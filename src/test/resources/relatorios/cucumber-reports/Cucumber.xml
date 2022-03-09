@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="60.014615">
+<testcase classname="COL - Novo Cotador Online" name="Elaboração de Cotação – Validação de Dados com Sucesso – PME Saúde - Front" time="60.014615">
+<failure message="java.lang.AssertionError: 2022-02-16T15:12:18.901 Tempo excedido para encontrar o elemento: 'By.xpath: //button[contains(@class,'new-quotation')]' em tela.&#10;&#9;at org.junit.Assert.fail(Assert.java:88)&#10;&#9;at interfaces.web.IEspera.esperarSerClicavel(IEspera.java:39)&#10;&#9;at paginas.CotacaoPage.btnDistVidas(CotacaoPage.java:96)&#10;&#9;at steps.TesteCol.optar_por_preencher_a_quantidade_de_vidas(TesteCol.java:50)&#10;&#9;at ✽.And optar por preencher a quantidade de vidas &quot;3&quot;(34104_orcamento.feature:39)&#10;"><![CDATA[Given Que o usuário acesse o front COL com credenciais válidas..............passed
+And apresentar a tela inicial...............................................passed
+When selecionar os menus "Cálculos" - "Saude" - "Novo Cotador Saude TST/HML".passed
+And iniciar Criar uma nova cotação..........................................passed
+And preenche as Informações do estipulante..................................passed
+And optar por preencher a quantidade de vidas "3"...........................failed
+And informo os dados para distribuir vidas "Cristal - NT - Sem Copar  - NT  - NT - 00 a 18:3,".skipped
+And seleciono a comissão desejada "H175"....................................skipped
+And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento..skipped
+And clicar no botão Cotar...................................................skipped
+Then o sistema deve apresentar a tela de confirmação com o numero da cotação.skipped
+
+StackTrace:
+java.lang.AssertionError: 2022-02-16T15:12:18.901 Tempo excedido para encontrar o elemento: 'By.xpath: //button[contains(@class,'new-quotation')]' em tela.
+	at org.junit.Assert.fail(Assert.java:88)
+	at interfaces.web.IEspera.esperarSerClicavel(IEspera.java:39)
+	at paginas.CotacaoPage.btnDistVidas(CotacaoPage.java:96)
+	at steps.TesteCol.optar_por_preencher_a_quantidade_de_vidas(TesteCol.java:50)
+	at ✽.And optar por preencher a quantidade de vidas "3"(34104_orcamento.feature:39)
+]]></failure>
+</testcase>
+</testsuite>

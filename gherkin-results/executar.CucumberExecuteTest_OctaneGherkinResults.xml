@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features version="1"><feature name="COL - Novo Cotador Online" path="src/test/resources/features/34104_orcamento.feature" started="1645035078848" tag="@TID34104REV0.6.0"><file><![CDATA[#enconding: utf-8
+#Auto generated Octane revision tag
+@TID34104REV0.6.0
+@COL @Orcamento 
+Feature: COL - Novo Cotador Online
+  Como um analista ,
+  Quero que as cotações sejam efetuadas no novo cotador
+  Para que tenhamos os processos efetuados no COL e gravados no Salesforce 
+  
+  
+        @CotacaoVerificarCancelarPreenchimento
+	Scenario Outline: Elaboração de Cotação – Validação de Dados com Sucesso – PME Saúde - Front
+	Given Que o usuário acesse o front COL com credenciais válidas 
+    And  apresentar a tela inicial
+    When selecionar os menus "Cálculos" - "Saude" - "Novo Cotador Saude TST/HML"
+	And iniciar Criar uma nova cotação 
+    And preenche as Informações do estipulante
+    And optar por preencher a quantidade de vidas "<qtdVidas>"
+    And informo os dados para distribuir vidas "<distribuirVidas>" 
+    And seleciono a comissão desejada "<comissao>"
+    And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento.
+    And clicar no botão Cancelar preenchimento
+    Then o sistema deve retornar para a tela inicial
+    
+    Examples:
+ #c| minimo 3 vd | Plano - modalidade - porcentagem  - tipoacomodacao - modalidadeOuro - distrib vidas                                                                     | K175 K079 K154 K130 K001 | 
+     | qtdVidas  | distribuirVidas                                                                                                                                              |  comissao |  
+ #   |   11      | Cristal - NT - 20% - NT - NT - 00 a 18:3,Prata - NT - 20% - Apartamento - NT - 44 a 48:2,Ouro - NT - 20% - NT - Ouro Max - 24 a 28:2 + 34 a 38:3 + 59 a 71:1 |   K079    |
+     |   3       | Ouro - NT - Sem Copar - NT - Ouro Mais - 00 a 18:3,                                                                                                          |   K154    |
+
+  
+     @CotacaoVariosPlanosSaoPauloRJ
+	Scenario Outline: Elaboração de Cotação – Validação de Dados com Sucesso – PME Saúde - Front
+	Given Que o usuário acesse o front COL com credenciais válidas 
+    And  apresentar a tela inicial
+    When selecionar os menus "Cálculos" - "Saude" - "Novo Cotador Saude TST/HML"
+	And iniciar Criar uma nova cotação 
+    And preenche as Informações do estipulante
+    And optar por preencher a quantidade de vidas "<qtdVidas>"
+    And informo os dados para distribuir vidas "<distribuirVidas>" 
+    And seleciono a comissão desejada "<comissao>"
+    And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento.
+    And clicar no botão Cotar
+    Then o sistema deve apresentar a tela de confirmação com o numero da cotação 
+    
+    Examples:
+ #c| minimo 3 vd | Plano - modalidade - porcentagem  - tipoacomodacao - modalidadeOuro - distrib vidas               | K175 K079 K154 K130 K001 | 
+     | qtdVidas  | distribuirVidas                                                                                       |  comissao |  
+ #   |   5       | Saúde Mais - Pulsar - NT - NT - NT - 00 a 18:5,                                                        |   K130    |
+ #   |   3       | Saúde Mais - Vivaz - NT - NT - NT - 00 a 18:3,                                                         |   K154    |
+ #   |   3       | Saúde Mais - Sublime - NT - NT - NT - 00 a 18:3,                                                       |   K130    |
+    |   3       | Cristal - NT - Sem Copar  - NT  - NT - 00 a 18:3,                                                      |   H175    |
+ #   |   3       | Cristal - NT - 20% - NT  - NT - 00 a 18:3,                                                             |   K079    |
+ #   |   3       | Cristal - NT - 30% - NT  - NT - 00 a 18:3,                                                             |   K001    |
+ #   |   3       | Bronze - NT - 20% - Enfermaria - NT - 00 a 18:3,                                                       |   K130    |
+ #   |   3       | Bronze - NT - 20% - Apartamento - NT - 00 a 18:3,                                                      |   K130    |
+ #   |   3       | Bronze - NT - 30% - Enfermaria - NT - 00 a 18:3,                                                       |   K130    |
+ #   |   3       | Bronze - NT - 30% - Apartamento - NT - 00 a 18:3,                                                      |   K154    |
+ #   |   3       | Prata - NT - Sem Copar - Enfermaria - NT - 00 a 18:3,                                                  |   H175    |
+ #   |   3       | Prata - NT - 20% - Apartamento - NT - 00 a 18:3,                                                       |   K130    |
+ #   |   3       | Prata - NT - 30% - Apartamento - NT - 00 a 18:3,                                                       |   K001    |
+ #   |   3       | Ouro - NT - Sem Copar - NT - Ouro Mais - 00 a 18:3,                                                    |   K130    |
+ #   |   3       | Ouro - NT - 20% - NT - Ouro Mais - 00 a 18:3,                                                          |   H175    |
+ #   |   3       | Ouro - NT - 20% - NT - Ouro Mais - 00 a 18:3,                                                          |   K130    |
+ #   |   3       | Ouro - NT - Sem Copar - NT - Ouro Max - 00 a 18:3,                                                     |   K154    |
+ #   |   3       | Ouro - NT - 20% - NT - Ouro Max - 00 a 18:3,                                                           |   K130    |
+ #   |   3       | Ouro - NT - 20% - NT - Ouro Max - 00 a 18:3,                                                           |   H175    |
+ #   |   3       | Diamante - NT - Sem Copar - Reembolso R1 - NT - 00 a 18:3,                                             |   K130    |
+ #   |   3       | Diamante - NT - 20% - Reembolso R1 - NT - 00 a 18:3,                                                   |   K130    |
+ #   |   3       | Diamante - NT - 30% - Reembolso R1 - NT - 00 a 18:3,                                                   |   K130    |
+ #   |   3       | Diamante - NT - Sem Copar - Reembolso R2 - NT - 00 a 18:3,                                             |   K154    |
+ #   |   3       | Diamante - NT - 20% - Reembolso R2 - NT - 00 a 18:3,                                                   |   K130    |
+ #   |   3       | Diamante - NT - 30% - Reembolso R2 - NT - 00 a 18:3,                                                   |   K130    |
+ #   |   10      | Cristal - NT - Sem Copar - NT - NT - 00 a 18:3, Bronze - NT - 20% - Enfermaria - NT - 00 a 18:5 + 44 a 48:2 |   K001    |
+ #   |   7       | Ouro - NT - 20% - NT - Ouro Mais - 00 a 18:3, Bronze - NT - 20% - Enfermaria - NT - 00 a 18:2 + 59 a 71:2   |   K079    |
+ #   |   11      | Cristal - NT - 30% - NT - NT - 00 a 18:3,Prata - NT - 20% - Apartamento - NT - 44 a 48:2, Ouro - NT - 20% - NT - Ouro Max - 24 a 28:2 + 34 a 38:3 + 59 a 71:1 |  K079  |
+ #   |   6       | Diamante - NT - 20% - Reembolso R1 - NT - 00 a 18:2, Ouro - NT - 20% - NT - Ouro Max - 20% - 00 a 18:2 + 59 a 71:2 |   K079    |
+
+   
+     @DuplicarCotacao
+	Scenario Outline: Duplicar Proposta – Validação de Dados com Sucesso – PME Saúde - Front
+	Given Que o usuário acesse o front COL com credenciais válidas 
+    And  apresentar a tela inicial
+    When selecionar os menus "Cálculos" - "Saude" - "Novo Cotador Saude TST/HML"
+	And iniciar Criar uma nova cotação 
+    And preenche as Informações do estipulante
+    And optar por preencher a quantidade de vidas "<qtdVidas>"
+    And informo os dados para distribuir vidas "<distribuirVidas>" 
+    And seleciono a comissão desejada "<comissao>"
+    And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento.
+    And clicar no botão Cotar
+    Then o sistema deve apresentar a tela de confirmação com o numero da cotação
+    When volto para a tela inicial
+    And consulto a cotacao gerada e clico em duplicar a proposta
+    And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento. 
+    And clicar no botão Cotar
+    Then o sistema deve apresentar a tela de confirmação com o numero da cotação
+    When clico no botão Elaborar proposta
+    And preencho plano anterior não
+    And a Data de Vigência
+    And o contato principal 
+    And email do contato
+    And Telefone do contato
+    And endereço para cobrança 
+    And inclusão de unidade
+    And clico no botão Continuar
+    And clico em cadastrar subestipulante Não
+    And clico em Continuar
+    And opto por digitação das vidas
+    And preencho as informações do titular "<alocacao>"
+    And continuo apos o preenchimento das vidas 
+    And anexo os documentos necessarios e os dados do estipulante
+    And termino de preencher os dados 
+    Then clico em Transmitir proposta
+    
+    Examples:
+ #c| minimo 3 vd | Plano - modalidade - porcentagem  - tipoacomodacao - modalidadeOuro - distrib vidas                                                             K175 K079 K154 K130 K001 | 
+     | qtdVidas  | distribuirVidas                                                                                                                                              |  comissao | alocacao                                           |
+ #   |   11      | Cristal - NT - 20% - NT - NT - 00 a 18:3,Prata - NT - 20% - Apartamento - NT - 44 a 48:2,Ouro - NT - 20% - NT - Ouro Max - 24 a 28:2 + 34 a 38:3 + 59 a 71:1 |   K079    |CRISTAL E, PRATA MAIS COPAR RC Q, OURO MAX COPAR Q  |
+     |   5       | Ouro - NT - Sem Copar - NT - Ouro Mais - 00 a 18:4 + 59 a 71:1,                                                                                                |   K154    | OURO MAIS Q		                                 |           	
+  
+    
+     @PropostaSoTitular
+	Scenario Outline: Elaboração de Proposta – Validação de Dados com Sucesso – PME Saúde - Front
+	Given Que o usuário acesse o front COL com credenciais válidas 
+    And  apresentar a tela inicial
+    When selecionar os menus "Cálculos" - "Saude" - "Novo Cotador Saude TST/HML"
+	And iniciar Criar uma nova cotação 
+    And preenche as Informações do estipulante
+    And optar por preencher a quantidade de vidas "<qtdVidas>"
+    And informo os dados para distribuir vidas "<distribuirVidas>" 
+    And seleciono a comissão desejada "<comissao>"
+    And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento.
+    And clicar no botão Cotar
+    Then o sistema deve apresentar a tela de confirmação com o numero da cotação 
+    When clico no botão Elaborar proposta
+    And preencho plano anterior não
+    And a Data de Vigência
+    And o contato principal 
+    And email do contato
+    And Telefone do contato
+    And endereço para cobrança 
+    And inclusão de unidade
+    And clico no botão Continuar
+    And clico em cadastrar subestipulante Não
+    And clico em Continuar
+    And opto por digitação das vidas
+    And preencho as informações do titular "<alocacao>"
+    And continuo apos o preenchimento das vidas 
+    And anexo os documentos necessarios e os dados do estipulante
+    And termino de preencher os dados 
+    Then clico em Transmitir proposta
+    
+    Examples:
+  #c| minimo 3 vd | Plano - modalidade - porcentagem  - tipoacomodacao - modalidadeOuro - distrib vidas                                                                           K175 K079 K154 K130 K001 | 
+    | qtdVidas  | distribuirVidas                                                                                                                                                       |  comissao |   alocacao                                         |subestipulante|
+  #  |   5      | Prata - NT - Sem Copar - Enfermaria - NT - 00 a 18:3 + 44 a 48:2,                                                                                                     |   H175    | PRATA MAIS RC E                                    |   false      |
+  #  |   7      | Ouro - NT - 20% - NT - Ouro Mais - 00 a 18:3, Bronze - NT - 20% - Apartamento - NT - 00 a 18:2 + 59 a 71:2                                                            |   K079    | OURO MAIS RC Q,BRONZE COPAR Q                      |   false      |
+  #  |  30      | Bronze - NT - 20% - Enfermaria - NT - 00 a 18:29 + 59 a 71:1,                                                                                                         |   K130    | BRONZE COPAR E                                     |   false      |
+  #  |  20      | Prata - NT - Sem Copar - Enfermaria - NT - 00 a 18:10 + 44 a 48:8 + 59 a 71:2,                                                                                        |   K130    | PRATA MAIS RC E                                    |   false      |
+    |   11     | Cristal - NT - Sem Copar  - NT  - NT - 00 a 18:3,Prata - NT - 20% - Enfermaria - NT - 44 a 48:2, Ouro - NT - 20% - NT - Ouro Max - 24 a 28:2 + 34 a 38:3 + 59 a 71:1  |   K079    | CRISTAL E, PRATA MAIS COPAR RC E, OURO MAX COPAR Q |   false      |
+
+   
+     @PropostaComSubestipulante
+	Scenario Outline: Elaboração de Proposta – Validação de Dados com Sucesso – PME Saúde - Front
+	Given Que o usuário acesse o front COL com credenciais válidas 
+    And  apresentar a tela inicial
+    When selecionar os menus "Cálculos" - "Saude" - "Novo Cotador Saude TST/HML"
+	And iniciar Criar uma nova cotação 
+    And preenche as Informações do estipulante
+    And optar por preencher a quantidade de vidas "<qtdVidas>"
+    And informo os dados para distribuir vidas "<distribuirVidas>" 
+    And seleciono a comissão desejada "<comissao>"
+    And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento.
+    And clicar no botão Cotar
+    Then o sistema deve apresentar a tela de confirmação com o numero da cotação 
+    When clico no botão Elaborar proposta
+    And preencho plano anterior não
+    And a Data de Vigência
+    And o contato principal 
+    And email do contato
+    And Telefone do contato
+    And endereço para cobrança 
+    And inclusão de unidade
+    And clico no botão Continuar
+    And clico em cadastrar subestipulante Sim
+    And preencho as informacoes do subestipulante
+    And clico em Continuar
+    And opto por digitação das vidas
+    And preencho as informações do titular "<alocacao>" e "<subestipulante>" corretamente
+    And continuo apos o preenchimento das vidas 
+    And anexo os documentos necessarios e os dados do estipulante
+    And anexo os documentos necessarios do sub
+    And termino de preencher os dados
+    Then clico em Transmitir proposta
+    
+    Examples:
+    | qtdVidas  | distribuirVidas                                                                                           |  comissao |   alocacao                      |subestipulante|
+    |   3       | Prata - NT - Sem Copar - Enfermaria - NT - 00 a 18:2 + 44 a 48:1,                                        |   H175    | PRATA MAIS RC E                 |      true    |
+  #  |   7       | Ouro - NT - 20% - NT - Ouro Max - 00 a 18:3, Bronze - NT - 20% - Enfermaria - NT - 00 a 18:2 + 59 a 71:2  |   K079    | OURO MAX COPAR Q,BRONZE COPAR E |      true    |
+  #  |  30       | Bronze - NT - 20% - Enfermaria - NT - 00 a 18:29 + 59 a 71:1,                                            |   K130    | BRONZE COPAR E                  |      true    |
+  #  |  30       | Prata - NT - Sem Copar - Enfermaria - NT - 00 a 18:19 + 44 a 48:10 + 59 a 71:1,                          |   K130    | PRATA MAIS RC E                 |      true    |
+  
+ 
+     
+       @PropostaPlanoTitularEdependentes
+	Scenario Outline: Elaboração de Proposta – Validação de Dados com Sucesso – PME Saúde - Front
+	Given Que o usuário acesse o front COL com credenciais válidas 
+    And  apresentar a tela inicial
+    When selecionar os menus "Cálculos" - "Saude" - "Novo Cotador Saude TST/HML"
+	And iniciar Criar uma nova cotação 
+    And preenche as Informações do estipulante
+    And optar por preencher a quantidade de vidas "<qtdVidas>"
+    And informo os dados para distribuir vidas "<distribuirVidas>" 
+    And seleciono a comissão desejada "<comissao>"
+    And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento.
+    And clicar no botão Cotar
+    Then o sistema deve apresentar a tela de confirmação com o numero da cotação 
+    When clico no botão Elaborar proposta
+    And preencho plano anterior não
+    And a Data de Vigência
+    And o contato principal 
+    And email do contato
+    And Telefone do contato
+    And endereço para cobrança 
+    And inclusão de unidade
+    And clico no botão Continuar
+    And clico em cadastrar subestipulante Não
+    And clico em Continuar
+    And opto por digitação das vidas
+    And preencho as informações do titular "<alocacao>" com dependentes
+    And continuo apos o preenchimento das vidas 
+    And anexo os documentos necessarios e os dados do estipulante
+    And termino de preencher os dados 
+    Then clico em Transmitir proposta
+    
+    Examples:
+  #c| minimo 3 vd | Plano - modalidade - porcentagem  - tipoacomodacao - modalidadeOuro - distrib vidas               | K175 K079 K154 K130 K001 | alocacao das vidas |
+    | qtdVidas  | distribuirVidas                                                                                       |  comissao              |   alocacao         |
+    |   3       | Prata - NT - Sem Copar - Enfermaria - NT - 00 a 18:2 + 44 a 48:1,                                     |   H175                 | PRATA MAIS RC E    |
+  #  |   7       | Ouro - NT - 20% - NT - Ouro Mais - 00 a 18:3, Bronze - NT - 20% - Enfermaria - NT - 00 a 18:2 + 59 a 71:2  |   K079           | OURO MAIS RC Q,BRONZE COPAR Q |
+  #  |  30       | Bronze - NT - 20% - Enfermaria - NT - 00 a 18:29 + 59 a 71:1,                                         |   K130                | BRONZE COPAR E     |
+  #  |  30       | Prata - NT - Sem Copar - Enfermaria - NT - 00 a 18:19 + 44 a 48:10 + 59 a 71:1,                       |   K130                | PRATA MAIS RC E    |
+  
+    ]]></file><scenarios><scenario name="Elaboração de Cotação – Validação de Dados com Sucesso – PME Saúde - Front" outlineIndex="1"><steps><step duration="4617426823" name="Given Que o usuário acesse o front COL com credenciais válidas" status="passed"/><step duration="12156" name="And apresentar a tela inicial" status="passed"/><step duration="1481192" name="When selecionar os menus &quot;Cálculos&quot; - &quot;Saude&quot; - &quot;Novo Cotador Saude TST/HML&quot;" status="passed"/><step duration="101347804" name="And iniciar Criar uma nova cotação" status="passed"/><step duration="47806538335" name="And preenche as Informações do estipulante" status="passed"/><step duration="7487809032" name="And optar por preencher a quantidade de vidas &quot;3&quot;" status="failed"><error_message><![CDATA[java.lang.AssertionError: 2022-02-16T15:12:18.901 Tempo excedido para encontrar o elemento: 'By.xpath: //button[contains(@class,'new-quotation')]' em tela.
+	at org.junit.Assert.fail(Assert.java:88)
+	at interfaces.web.IEspera.esperarSerClicavel(IEspera.java:39)
+	at paginas.CotacaoPage.btnDistVidas(CotacaoPage.java:96)
+	at steps.TesteCol.optar_por_preencher_a_quantidade_de_vidas(TesteCol.java:50)
+	at ✽.And optar por preencher a quantidade de vidas "3"(34104_orcamento.feature:39)
+]]></error_message></step><step duration="0" name="And informo os dados para distribuir vidas &quot;Cristal - NT - Sem Copar  - NT  - NT - 00 a 18:3,&quot;" status="skipped"/><step duration="0" name="And seleciono a comissão desejada &quot;H175&quot;" status="skipped"/><step duration="0" name="And seleciono o checkbox Li e estou de acordo com as Regras de Agenciamento." status="skipped"/><step duration="0" name="And clicar no botão Cotar" status="skipped"/><step duration="0" name="Then o sistema deve apresentar a tela de confirmação com o numero da cotação" status="skipped"/></steps></scenario></scenarios></feature></features>
