@@ -1,4 +1,4 @@
-# **Programa para criar Planilha excel preenchida copm dados aleatórios **
+# **Programa para criar Planilha excel preenchida com dados aleatórios **
 
 
 
